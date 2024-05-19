@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask
 import RPi.GPIO as GPIO
 import threading
 import time
@@ -14,6 +14,10 @@ GPIO.setup(servo_pin, GPIO.OUT)
 pwm = GPIO.PWM(servo_pin, 50)  # 50 Hz
 pwm.start(0)
 
+# Thread control
+servo_thread = None
+thread_running = False
+
 def set_servo_angle(angle):
     duty_cycle = 2 + (angle / 18)
     pwm.ChangeDutyCycle(duty_cycle)
@@ -21,7 +25,8 @@ def set_servo_angle(angle):
     pwm.ChangeDutyCycle(0)  # Stop sending pulse to keep the servo from jittering
 
 def rotate_servo():
-    while True:
+    global thread_running
+    while thread_running:
         set_servo_angle(0)   # Move to 0 degrees
         time.sleep(1)        # Wait for 1 second
         set_servo_angle(180) # Move to 180 degrees
@@ -29,12 +34,21 @@ def rotate_servo():
 
 @app.route('/start', methods=['GET'])
 def start_servo():
-    t = threading.Thread(target=rotate_servo)
-    t.start()
-    return "Servo rotation started!", 200
+    global servo_thread, thread_running
+    if not thread_running:  # Only start the thread if it is not already running
+        thread_running = True
+        servo_thread = threading.Thread(target=rotate_servo)
+        servo_thread.start()
+        return "Servo rotation started!", 200
+    else:
+        return "Servo is already rotating!", 200
 
 @app.route('/stop', methods=['GET'])
 def stop_servo():
+    global thread_running
+    thread_running = False
+    if servo_thread:
+        servo_thread.join()  # Wait for the thread to finish
     pwm.ChangeDutyCycle(0)
     GPIO.cleanup()  # Clean up GPIO assignments
     return "Servo rotation stopped!", 200
