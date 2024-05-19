@@ -9,6 +9,8 @@
 			}
 
 			.controlButton {
+				display: block;
+				margin: 20px auto;
 				border: none;
 				background-color: rgb(119, 80, 114);
 				color: white;
@@ -25,8 +27,8 @@
 		<p id="message"></p>
     <button class="controlButton" onclick="startServo()">Start</button>
     <button class="controlButton" onclick="stopServo()">Stop</button>
-		<button class="controlButton" onclick="speedUp()">Increase speed</button>
-		<button class="controlButton" onclick="speedDown()">Decrease speed</button>
+		<button class="controlButton" onclick="speedUp()">Fast</button>
+		<button class="controlButton" onclick="speedDown()">Slow</button>
 
     <script>
         function startServo() {
