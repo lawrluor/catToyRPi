@@ -2,24 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Servo Control</title>
+    <title>Control</title>
 </head>
 <body>
-    <h1>Servo Control Interface</h1>
-    <button onclick="startServo()">Start Servo</button>
-    <button onclick="stopServo()">Stop Servo</button>
+    <h1>Control Interface</h1>
+		<p id="message"></p>
+    <button onclick="startServo()">Start</button>
+    <button onclick="stopServo()">Stop</button>
 
     <script>
         function startServo() {
             fetch('/start', { method: 'POST' })
             .then(response => response.text())
-            .then(data => alert(data));
+            .then(data => {
+							document.getElementById("message").innerHTML = data;
+						});
         }
 
         function stopServo() {
             fetch('/stop', { method: 'POST' })
             .then(response => response.text())
-            .then(data => alert(data));
+            .then(data => {
+							document.getElementById("message").innerHTML = data;
+						});
         }
     </script>
 </body>
