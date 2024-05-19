@@ -5,6 +5,7 @@ import time
 import random
 
 app = Flask(__name__)
+app.config['DEBUG'] = True  # Enable debug mode
 
 WAIT_TIME = 0.5  # Time to wait between moves
 
@@ -79,6 +80,6 @@ def stop_servo():
             return "Servo rotation stopped!", 200
         else:
             return "Servo is already stopped!", 200
-        
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
