@@ -23,8 +23,9 @@ servo_thread = None
 thread_running = threading.Event()
 lock = threading.Lock()
 
-# Keep track of the last angle
+# Keep track of the last angle and direction state
 last_angle = 90  # Initialize to a neutral position
+move_direction = 1  # 1 for moving towards 180, -1 for moving towards 0
 
 def set_servo_angle(angle):
     global last_angle
@@ -35,17 +36,20 @@ def set_servo_angle(angle):
     last_angle = angle  # Update the last angle
 
 def calculate_next_angle():
-    global last_angle
-    # Determine direction randomly: 1 for positive, -1 for negative
-    direction = random.choice([1, -1])
-    # Calculate new angle, ensuring it moves at least 45 degrees
-    next_angle = last_angle + direction * random.randint(45, 135)
+    global last_angle, move_direction
+    # Toggle the direction each move
+    move_direction *= -1
 
-    # Adjust angle to stay within 0 to 180 degrees
-    if next_angle > 180:
-        next_angle = 180
-    elif next_angle < 0:
-        next_angle = 0
+    # Calculate next angle based on current direction
+    if move_direction == 1:
+        # Move towards 180, but ensure at least a 45-degree change
+        min_angle = min(180, last_angle + 45)
+        next_angle = random.randint(min_angle, 180)
+    else:
+        # Move towards 0, but ensure at least a 45-degree change
+        max_angle = max(0, last_angle - 45)
+        next_angle = random.randint(0, max_angle)
+
     return next_angle
 
 def rotate_servo():
