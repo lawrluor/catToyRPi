@@ -7,7 +7,7 @@ import random
 app = Flask(__name__)
 app.config['DEBUG'] = True  # Enable debug mode
 
-WAIT_TIME = 0.5  # Time to wait between moves
+WAIT_TIME = 0.33  # Time to wait between moves
 
 # GPIO setup
 servo_pin = 17
@@ -61,6 +61,18 @@ def rotate_servo():
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+
+@app.route('/speed_up', methods=['POST'])
+def speed_up():
+    global WAIT_TIME
+    WAIT_TIME = 0.2
+    return "Speed increased to move every {} seconds.".format(WAIT_TIME), 200
+
+@app.route('/speed_down', methods=['POST'])
+def speed_down():
+    global WAIT_TIME
+    WAIT_TIME = 0.5
+    return "Speed decreased to move every {} seconds.".format(WAIT_TIME), 200
 
 @app.route('/start', methods=['POST'])
 def start_servo():

@@ -25,6 +25,8 @@
 		<p id="message"></p>
     <button class="controlButton" onclick="startServo()">Start</button>
     <button class="controlButton" onclick="stopServo()">Stop</button>
+		<button class="controlButton" onclick="speedUp()">Increase speed</button>
+		<button class="controlButton" onclick="speedUp()">Decrease speed</button>
 
     <script>
         function startServo() {
@@ -42,6 +44,22 @@
 							document.getElementById("message").innerHTML = data;
 						});
         }
+
+				function speedUp() {
+						fetch('/speedUp', { method: 'POST' })
+						.then(response => response.text())
+						.then(data => {
+							document.getElementById("message").innerHTML = data;
+						});
+				}
+
+				function speedDown() {
+						fetch('/speedDown', { method: 'POST' })
+						.then(response => response.text())
+						.then(data => {
+							document.getElementById("message").innerHTML = data;
+						});
+				}
     </script>
 </body>
 </html>
