@@ -70,9 +70,9 @@ def start_servo():
             thread_running.set()
             servo_thread = threading.Thread(target=rotate_servo)
             servo_thread.start()
-            return "Servo rotation started!", 200
+            return "Started!", 200
         else:
-            return "Servo is already rotating!", 200
+            return "Toy is already started!", 200
 
 @app.route('/stop', methods=['POST'])
 def stop_servo():
@@ -81,9 +81,9 @@ def stop_servo():
         if thread_running.is_set():
             thread_running.clear()
             servo_thread.join()
-            return "Servo rotation stopped!", 200
+            return "Toy stopped.", 200
         else:
-            return "Servo is already stopped!", 200
+            return "Toy is already stopped.", 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

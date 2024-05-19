@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Control</title>
+		<style>
+			.controlButton {
+				border: none;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 32px;
+			}
+		</style>
 </head>
 <body>
     <h1>Control Interface</h1>
 		<p id="message"></p>
-    <button onclick="startServo()">Start</button>
-    <button onclick="stopServo()">Stop</button>
+    <button class="controlButton" onclick="startServo()">Start</button>
+    <button class="controlButton" onclick="stopServo()">Stop</button>
 
     <script>
         function startServo() {
