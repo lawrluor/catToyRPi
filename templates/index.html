@@ -46,7 +46,7 @@
         }
 
 				function speedUp() {
-						fetch('/speedUp', { method: 'POST' })
+						fetch('/speed_up', { method: 'POST' })
 						.then(response => response.text())
 						.then(data => {
 							document.getElementById("message").innerHTML = data;
@@ -54,7 +54,7 @@
 				}
 
 				function speedDown() {
-						fetch('/speedDown', { method: 'POST' })
+						fetch('/speed_down', { method: 'POST' })
 						.then(response => response.text())
 						.then(data => {
 							document.getElementById("message").innerHTML = data;
