@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import RPi.GPIO as GPIO
 import threading
 import time
@@ -53,7 +53,11 @@ def rotate_servo():
         set_servo_angle(next_angle)
         time.sleep(WAIT_TIME)
 
-@app.route('/start', methods=['GET'])
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
+
+@app.route('/start', methods=['POST'])
 def start_servo():
     global servo_thread
     with lock:
@@ -65,7 +69,7 @@ def start_servo():
         else:
             return "Servo is already rotating!", 200
 
-@app.route('/stop', methods=['GET'])
+@app.route('/stop', methods=['POST'])
 def stop_servo():
     global servo_thread
     with lock:
@@ -75,6 +79,6 @@ def stop_servo():
             return "Servo rotation stopped!", 200
         else:
             return "Servo is already stopped!", 200
-
+        
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
