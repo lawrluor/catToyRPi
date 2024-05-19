@@ -21,16 +21,16 @@ thread_running = False
 def set_servo_angle(angle):
     duty_cycle = 2 + (angle / 18)
     pwm.ChangeDutyCycle(duty_cycle)
-    time.sleep(1)  # Give the servo time to move
+    time.sleep(0.5)  # Give the servo time to move
     pwm.ChangeDutyCycle(0)  # Stop sending pulse to keep the servo from jittering
 
 def rotate_servo():
     global thread_running
     while thread_running:
         set_servo_angle(0)   # Move to 0 degrees
-        time.sleep(1)        # Wait for 1 second
+        time.sleep(0.5)
         set_servo_angle(180) # Move to 180 degrees
-        time.sleep(1)        # Wait for 1 second
+        time.sleep(0.5)
 
 @app.route('/start', methods=['GET'])
 def start_servo():
