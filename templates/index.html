@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Servo Control</title>
+</head>
+<body>
+    <h1>Servo Control Interface</h1>
+    <button onclick="startServo()">Start Servo</button>
+    <button onclick="stopServo()">Stop Servo</button>
+
+    <script>
+        function startServo() {
+            fetch('/start', { method: 'POST' })
+            .then(response => response.text())
+            .then(data => alert(data));
+        }
+
+        function stopServo() {
+            fetch('/stop', { method: 'POST' })
+            .then(response => response.text())
+            .then(data => alert(data));
+        }
+    </script>
+</body>
+</html>
