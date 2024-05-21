@@ -25,16 +25,16 @@ pip install -r requirements.txt
 DESKTOP_FILE_CONTENT="[Desktop Entry]
 Name=Run Setup Script
 Comment=This will run the setup script
-Exec=/home/pi/Repos/catToyRPi/run.sh
+Exec=catToyRPi/run.sh
 Icon=utilities-terminal
 Terminal=true
 Type=Application"
 
 # Create the .desktop file on the Desktop
-echo "$DESKTOP_FILE_CONTENT" > /home/pi/Desktop/runServer.desktop
+echo "$DESKTOP_FILE_CONTENT" > Desktop/runServer.desktop
 
 # Make the .desktop file executable
-chmod +x /home/pi/Desktop/runServer.desktop
+chmod +x Desktop/runServer.desktop
 
 echo "Desktop shortcut created successfully."
 echo "To run the server in the future: bash run.sh"
