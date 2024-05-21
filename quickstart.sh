@@ -1,9 +1,4 @@
 #!/bin/bash
-echo "Getting quickstart script..."
-git clone https://github.com/lawrluor/catToyRPi.git || true
-mv catToyRPi/quickstart.sh ./quickstart.sh
-rm -rf catToyRPi
-bash quickstart.sh
 
 # Update the system
 echo "Updating system..."
@@ -23,7 +18,7 @@ echo "Cloning repository and setting up the environment..."
 git clone https://github.com/lawrluor/catToyRPi.git || true
 sleep 3s
 cd catToyRPi || { echo "Failed to enter the repository directory"; exit 1; }
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
@@ -45,6 +40,8 @@ chmod +x /home/pi/Desktop/runServer.desktop
 echo "Desktop shortcut created successfully."
 
 # Run the application
-echo "To run the server: bash run.sh"
+echo "Starting the application..."
+python app.py
+echo "To run the server in the future: bash run.sh"
 echo "Or, click the desktop shortcut that was created"
 echo "Setup completed. You can now use your Raspberry Pi as a cat toy controller."
