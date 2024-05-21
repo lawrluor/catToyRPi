@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Run from the root folder of your terminal
+
 # Update the system
 echo "Updating system..."
 sudo apt update && sudo apt upgrade -y
@@ -15,7 +17,7 @@ git config --global credential.helper store
 
 # Clone the repository and set up the environment
 echo "Cloning repository and setting up the environment..."
-git clone https://github.com/lawrluor/catToyRPi.git
+git clone https://github.com/lawrluor/catToyRPi.git || true
 sleep 3s
 cd catToyRPi || { echo "Failed to enter the repository directory"; exit 1; }
 python3 -m venv venv
