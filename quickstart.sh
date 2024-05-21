@@ -30,6 +30,7 @@ mkdir Repos
 cd Repos
 echo "Cloning repository and setting up the environment..."
 git clone https://github.com/lawrluor/catToyRPi.git
+sleep 3
 cd catToyRPi || { echo "Failed to enter the repository directory"; exit 1; }
 python3 -m venv venv
 source venv/bin/activate
