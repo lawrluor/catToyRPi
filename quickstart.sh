@@ -16,7 +16,6 @@ git config --global credential.helper store
 # Clone the repository and set up the environment
 echo "Cloning repository and setting up the environment..."
 git clone https://github.com/lawrluor/catToyRPi.git || true
-sleep 3s
 cd catToyRPi || { echo "Failed to enter the repository directory"; exit 1; }
 python -m venv venv
 source venv/bin/activate
