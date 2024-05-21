@@ -63,7 +63,7 @@ To transfer files from your Raspberry Pi, use RealVNC Viewer to open the RealVNC
 
 
 # QUICKSTART (Personal Device Setup)
-Use RealVNC file transfer to transfer the `quickstart.sh` file (available in the repo), or run:
+Use RealVNC file transfer to transfer the `quickstart.sh` file (available in the repo), then run that file in the root of the computer, or run the following lines in the root of the computer:
 
 ```sh
 git clone https://github.com/lawrluor/catToyRPi.git

@@ -1,6 +1,9 @@
 #!/bin/bash
-
-# Run from the root folder of your terminal
+echo "Getting quickstart script..."
+git clone https://github.com/lawrluor/catToyRPi.git || true
+mv catToyRPi/quickstart.sh ./quickstart.sh
+rm -rf catToyRPi
+bash quickstart.sh
 
 # Update the system
 echo "Updating system..."
