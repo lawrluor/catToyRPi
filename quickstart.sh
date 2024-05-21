@@ -38,10 +38,13 @@ echo "$DESKTOP_FILE_CONTENT" > /home/pi/Desktop/runServer.desktop
 chmod +x /home/pi/Desktop/runServer.desktop
 
 echo "Desktop shortcut created successfully."
+echo "To run the server in the future: bash run.sh"
+echo "Or, click the desktop shortcut that was created"
+
+echo "Setup completed. You can now use your Raspberry Pi as a cat toy controller."
 
 # Run the application
 echo "Starting the application..."
+cd catToyRPi
+source venv/bin/activate
 python app.py
-echo "To run the server in the future: bash run.sh"
-echo "Or, click the desktop shortcut that was created"
-echo "Setup completed. You can now use your Raspberry Pi as a cat toy controller."
