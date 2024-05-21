@@ -8,6 +8,13 @@ sudo apt update && sudo apt upgrade -y
 echo "Installing RealVNC..."
 sudo apt-get install -y realvnc-vnc-viewer
 
+# Install Python
+sudo apt-get install python3-venv python3-setuptools python3-pip python3-wheel
+
+# Install virtualenv
+echo "Installing virtualenv..."
+sudo apt install -y python3-virtualenv || true
+
 # Install Git
 echo "Installing Git..."
 sudo apt install -y git
@@ -17,9 +24,15 @@ git config --global credential.helper store
 echo "Cloning repository and setting up the environment..."
 git clone https://github.com/lawrluor/catToyRPi.git || true
 cd catToyRPi || { echo "Failed to enter the repository directory"; exit 1; }
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+
+# Create virtual environment using virtualenv
+echo "Creating virtual environment..."
+python3 -m virtualenv venv || true
+
+# Activate the virtual environment and install dependencies
+echo "Activating virtual environment and installing dependencies..."
+source venv/bin/activate || true
+pip install -r requirements.txt || true
 
 # Create the .desktop file content
 DESKTOP_FILE_CONTENT="[Desktop Entry]
